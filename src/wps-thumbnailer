@@ -25,7 +25,7 @@ command -v composite >/dev/null 2>&1 || exit 1
 command -v mimetype >/dev/null 2>&1 || exit 1 
 
 # path where to get icons used for generation 
-ICONPATH="/opt/extras.ubuntu.com/wpsthumbnailer/pixmaps" 
+ICONPATH="/opt/extras.ubuntu.com/wps-thumbnailer/pixmaps" 
 
 # get parameters 
 FILE_URI=$1 
@@ -42,18 +42,21 @@ TMP_BASEFILE="$TMP_DIR/file"
 # copy file to temporary local directory 
 gvfs-copy "${FILE_URI}" "${TMP_BASEFILE}.${FILE_EXT}" 
 
+# get the file mime type (application/msword, ...)
+MIMETYPE=$(mimetype -b "${TMP_BASEFILE}.${FILE_EXT}")
+
 # determine icon type according to mime type 
-case `mimetype --brief "$1"` in
-  application/wps-office.wps | \
-  application/wps-office.wpt)
+case $MIMETYPE in
+  "application/wps-office.wps" | \
+  "application/wps-office.wpt")
     DOCTYPE="writer"
     ;;
-  application/wps-office.et | \
-  application/wps-office.ett)
+  "application/wps-office.et" | \
+  "application/wps-office.ett")
     DOCTYPE="spreadsheet"
     ;;
-  application/wps-office.dps | \
-  application/wps-office.dpt)
+  "application/wps-office.dps" | \
+  "application/wps-office.dpt")
     DOCTYPE="presentation"
     ;;
   *)
