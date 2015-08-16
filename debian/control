@@ -1,4 +1,4 @@
-Source: wpsthumbnailer
+Source: wps-thumbnailer
 Section: utils
 Priority: extra
 Maintainer: Lorenzo Carbonell Cerezo <lorenzo.carbonell.cerezo@gmail.com>
@@ -6,7 +6,7 @@ Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.4
 Homepage: http://www.atareao.es
 
-Package: wpsthumbnailer
+Package: wps-thumbnailer
 Architecture: all
 Depends: ${misc:Depends}, 
 	unoconv,
@@ -14,6 +14,6 @@ Depends: ${misc:Depends},
 	imagemagick,
 	libfile-mimeinfo-perl
 Description: A thumbnailer for Kingsoft Office documents
- WPSThumbnailer is a Kingsoft Office documents thumbnailer that can be
+ wps-thumbnailer is a Kingsoft Office documents thumbnailer that can be
  used by file managers to create thumbnails for your documents,
  spreadsheets, presentations and drawings.
