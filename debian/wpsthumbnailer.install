@@ -1,0 +1,6 @@
+src/wps.thumbnailer /usr/share/thumbnailers
+src/wpsthumbnailer /opt/extras.ubuntu.com/wpsthumbnailer/bin
+data/wps-mask.png /opt/extras.ubuntu.com/wpsthumbnailer/pixmaps
+data/wps-presentation.png /opt/extras.ubuntu.com/wpsthumbnailer/pixmaps
+data/wps-spreadsheet.png /opt/extras.ubuntu.com/wpsthumbnailer/pixmaps
+data/wps-writer.png /opt/extras.ubuntu.com/wpsthumbnailer/pixmaps

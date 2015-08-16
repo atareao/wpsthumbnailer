@@ -1,0 +1,5 @@
+[Thumbnailer Entry]
+TryExec=/opt/extras.ubuntu.com/wpsthumbnailer/bin/wpsthumbnailer
+Exec=/opt/extras.ubuntu.com/wpsthumbnailer/bin/wpsthumbnailer %i %o %s
+MimeType=application/wps-office.wps;application/wps-office.wpt;application/wps-office.et;application/wps-office.ett;application/wps-office.dps;application/wps-office.dpt;
+  
