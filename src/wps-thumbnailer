@@ -49,17 +49,38 @@ MIMETYPE=$(mimetype -b "${TMP_BASEFILE}.${FILE_EXT}")
 case $MIMETYPE in
   "application/wps-office.wps" | \
   "application/wps-office.wpt")
-    DOCTYPE="writer"
+    DOCTYPE="wps-writer.png"
+    MASK="wps-mask.png"
     ;;
   "application/wps-office.et" | \
   "application/wps-office.ett")
-    DOCTYPE="spreadsheet"
+    DOCTYPE="wps-spreadsheet.png"
+    MASK="wps-mask.png"
     ;;
   "application/wps-office.dps" | \
   "application/wps-office.dpt")
-    DOCTYPE="presentation"
+    DOCTYPE="wps-presentation.png"
+    MASK="wps-mask.png"
     ;;
-  *)
+  "application/msword" | "application/vnd.ms-word" | \
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document" )
+    DOCTYPE="msoffice-word.png"
+    MASK="msoffice-mask.png"
+    ;;
+  "application/vnd.ms-excel" | \
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" | \
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.template" )
+    DOCTYPE="msoffice-excel.png"
+    MASK="msoffice-mask.png"
+    ;;
+  "application/vnd.ms-powerpoint" | \
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation" | \
+  "application/vnd.openxmlformats-officedocument.presentationml.template" | \
+  "application/vnd.openxmlformats-officedocument.presentationml.slideshow" )
+    DOCTYPE="msoffice-powerpoint.png"
+    MASK="msoffice-mask.png"
+    ;;
+  * )
 esac
 
 # convert first document page to PDF 
@@ -69,7 +90,7 @@ unoconv -e PageRange=1-1 -f pdf "${TMP_BASEFILE}.${FILE_EXT}"
 convert "${TMP_BASEFILE}.pdf" "${TMP_BASEFILE}.png" 
 
 # generate thumbnail according to document type 
-composite -gravity center \( -resize x244 "${TMP_BASEFILE}.png" \) ${ICONPATH}/wps-${DOCTYPE}.png ${ICONPATH}/wps-mask.png \( -resize x${HEIGHT} \) "$FILE_THUMB" 
+composite -gravity center \( -resize x244 "${TMP_BASEFILE}.png" \) ${ICONPATH}/${DOCTYPE} ${ICONPATH}/${MASK} \( -resize x${HEIGHT} \) "$FILE_THUMB" 
 
 # remove temporary files 
 rm -R $TMP_DIR 
